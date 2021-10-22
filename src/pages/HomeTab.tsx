@@ -10,14 +10,24 @@ import {
   IonFabButton,
   useIonViewWillEnter,
 } from "@ionic/react";
+import React, { useState, useEffect, useContext } from "react";
 import { addCircleSharp, add } from "ionicons/icons";
 import ExploreContainer from "../components/ExploreContainer";
 import "./HomeTab.css";
+import UserContext from "../userContext";
+import { useHistory } from "react-router";
 
 const Tab1: React.FC = () => {
+  const userContext = useContext(UserContext);
+  let history = useHistory();
+
   useIonViewWillEnter(() => {
     let tabs = document.getElementById("tabBar");
     tabs!.style.display = "flex";
+
+    if (userContext.id == "") {
+      history.replace("/");
+    }
   });
 
   return (

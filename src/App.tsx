@@ -16,6 +16,7 @@ import Bluetooth from "./pages/BluetoothTab";
 import Registration from "./pages/RegistrationScreen";
 import Login from "./pages/LoginScreen";
 import AddRecord from "./pages/AddRecord";
+import Details from "./pages/Details";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -52,6 +53,9 @@ const App: React.FC = () => (
           </Route>
           <Route exact path="/addrecord">
             <AddRecord />
+          </Route>
+          <Route exact path="/details">
+            <Details />
           </Route>
           <Route exact path="/home">
             <Home />

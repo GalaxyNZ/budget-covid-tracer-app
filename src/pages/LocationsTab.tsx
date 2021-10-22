@@ -67,7 +67,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Add Location</IonTitle>
+          <IonTitle>Locations </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -86,13 +86,14 @@ const Tab2: React.FC = () => {
                 e.preventDefault();
                 history.push({
                   pathname: "/details",
-                  state: index,
+                  state: data.id,
                 });
               }}
             >
               <IonCardHeader>
                 <IonCardTitle> {data.placename} </IonCardTitle>
                 <IonCardSubtitle> {data.time} </IonCardSubtitle>
+                <IonCardSubtitle> {data.id} </IonCardSubtitle>
               </IonCardHeader>
             </IonCard>
           ))}
