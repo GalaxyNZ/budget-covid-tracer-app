@@ -8,12 +8,18 @@ import {
   IonIcon,
   IonFab,
   IonFabButton,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { addCircleSharp, add } from "ionicons/icons";
 import ExploreContainer from "../components/ExploreContainer";
 import "./HomeTab.css";
 
 const Tab1: React.FC = () => {
+  useIonViewWillEnter(() => {
+    let tabs = document.getElementById("tabBar");
+    tabs!.style.display = "flex";
+  });
+
   return (
     <IonPage>
       <IonHeader>

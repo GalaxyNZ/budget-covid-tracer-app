@@ -10,43 +10,35 @@ import {
   useIonViewWillEnter,
 } from "@ionic/react";
 import "./RegistrationScreen.css";
-import LoginScreen from "./LoginScreen";
 import firebase from "../firebase";
 import UserContext from "../userContext";
 import { useHistory } from "react-router";
 
 export default function RegistrationScreen() {
-  const userContext = useContext(UserContext);
   let history = useHistory();
+  const userContext = useContext(UserContext);
 
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const onRegisterPress = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords don't match.");
-      return;
-    }
+  const onLoginPress = () => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((response: any) => {
         const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email,
-          fullName,
-        };
         const usersRef = firebase.firestore().collection("users");
         usersRef
           .doc(uid)
-          .set(data)
-          .then(() => {
+          .get()
+          .then((firestoreDocument) => {
+            if (!firestoreDocument.exists) {
+              alert("User does not exist anymore.");
+              return;
+            }
+            const user = firestoreDocument.data();
             userContext.id = uid;
             userContext.email = email;
-            userContext.name = fullName;
             history.push({
               pathname: "/home",
             });
@@ -63,21 +55,19 @@ export default function RegistrationScreen() {
   useIonViewWillEnter(() => {
     let tabs = document.getElementById("tabBar");
     tabs!.style.display = "none";
+    userContext.email = "";
+    userContext.id = "";
+    userContext.name = "";
   });
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Register</IonTitle>
+          <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonInput
-          autofocus
-          placeholder="Full Name"
-          onIonChange={(text: any) => setFullName(text.target.value)}
-        />
         <IonInput
           placeholder="E-mail"
           onIonChange={(text: any) => setEmail(text.target.value)}
@@ -87,13 +77,9 @@ export default function RegistrationScreen() {
           onIonChange={(text: any) => setPassword(text.target.value)}
           placeholder="Password"
         />
-        <IonInput
-          type="password"
-          placeholder="Confirm Password"
-          onIonChange={(text: any) => setConfirmPassword(text.target.value)}
-        />
-        <IonButton onClick={onRegisterPress}>Create account</IonButton>
-        Already got an account? <IonButton href="/login">Log in</IonButton>
+        <IonButton onClick={onLoginPress}>Login</IonButton>
+        Don't have an account?{" "}
+        <IonButton href="/registration">Create an account</IonButton>
       </IonContent>
     </IonPage>
   );

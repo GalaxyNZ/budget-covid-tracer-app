@@ -13,6 +13,8 @@ import { ellipse, square, triangle, ellipseOutline } from "ionicons/icons";
 import Home from "./pages/HomeTab";
 import Locations from "./pages/LocationsTab";
 import Bluetooth from "./pages/BluetoothTab";
+import Registration from "./pages/RegistrationScreen";
+import Login from "./pages/LoginScreen";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -38,6 +40,12 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/registration">
+            <Registration />
+          </Route>
           <Route exact path="/locations">
             <Locations />
           </Route>
@@ -48,10 +56,10 @@ const App: React.FC = () => (
             <Bluetooth />
           </Route>
           <Route exact path="/">
-            <Redirect to="/home" />
+            <Redirect to="/login" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        <IonTabBar slot="bottom" id="tabBar">
           <IonTabButton tab="locations" href="/locations">
             <IonIcon icon={triangle} />
             <IonLabel>Locations</IonLabel>
