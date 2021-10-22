@@ -91,6 +91,8 @@ const Tab2: React.FC = () => {
     tabs!.style.display = "none";
   });
 
+  
+
   return (
     <IonPage>
       <IonHeader>

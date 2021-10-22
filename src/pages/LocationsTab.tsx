@@ -12,6 +12,11 @@ import {
   IonButton,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonCardSubtitle,
 } from "@ionic/react";
 import React, { useState, useEffect, useContext } from "react";
 import "./LocationsTab.css";
@@ -28,7 +33,7 @@ import UserContext from "../userContext";
 const Tab2: React.FC = () => {
   let history = useHistory();
   const userContext = useContext(UserContext);
-  const [entities, setEntities] = useState();
+  const [entities, setEntities] = useState(new Array());
 
   const locationsDB = firebase.firestore().collection("locations");
 
@@ -38,13 +43,14 @@ const Tab2: React.FC = () => {
       .orderBy("createdAt", "desc")
       .onSnapshot(
         (querySnapshot) => {
-          var newEntities;
+          var newEntities = new Array();
           querySnapshot.forEach((doc) => {
             const entity = doc.data();
             entity.id = doc.id;
             newEntities.push(entity);
           });
           setEntities(newEntities);
+          console.log(entities);
         },
         (error) => {
           console.log(error);
@@ -64,19 +70,33 @@ const Tab2: React.FC = () => {
           <IonTitle>Add Location</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonButton onClick={() => {}} expand="block">
-          Toggle Infinite Scroll
-        </IonButton>
-
-        <IonList></IonList>
-
-        <IonInfiniteScroll threshold="100px" id="infinite-scroll">
-          <IonInfiniteScrollContent
-            loading-spinner="bubbles"
-            loading-text="Loading more data..."
-          ></IonInfiniteScrollContent>
-        </IonInfiniteScroll>
+      <IonContent>
+        <IonContent>
+          <IonCard>
+            <IonCardHeader>
+              <IonCardTitle> Location </IonCardTitle>
+              <IonCardSubtitle> Time </IonCardSubtitle>
+            </IonCardHeader>
+          </IonCard>
+          {/* Map through devices */}
+          {entities.map((data: any, index: number) => (
+            <IonCard
+              key={index}
+              onClick={(e) => {
+                e.preventDefault();
+                history.push({
+                  pathname: "/details",
+                  state: index,
+                });
+              }}
+            >
+              <IonCardHeader>
+                <IonCardTitle> {data.placename} </IonCardTitle>
+                <IonCardSubtitle> {data.time} </IonCardSubtitle>
+              </IonCardHeader>
+            </IonCard>
+          ))}
+        </IonContent>
         <IonButton
           onClick={(e) => {
             e.preventDefault();
