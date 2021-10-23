@@ -91,8 +91,6 @@ const Tab2: React.FC = () => {
     tabs!.style.display = "none";
   });
 
-  
-
   return (
     <IonPage>
       <IonHeader>
@@ -167,6 +165,14 @@ const Tab2: React.FC = () => {
 
           <IonItem>
             <IonButton onClick={onAddButtonPress}>Add record</IonButton>
+            <IonButton
+              onClick={(e) => {
+                e.preventDefault();
+                history.goBack();
+              }}
+            >
+              Go Back
+            </IonButton>
           </IonItem>
         </IonList>
       </IonContent>

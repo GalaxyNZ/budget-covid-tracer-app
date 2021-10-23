@@ -30,11 +30,16 @@ const Tab1: React.FC = () => {
     }
   });
 
+  const logOut = () => {
+    userContext.id = "";
+    history.replace("/");
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Tab 1</IonTitle>
+          <IonTitle>Home</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -56,6 +61,7 @@ const Tab1: React.FC = () => {
         >
           <IonIcon icon={add} size="300" />
         </button>
+        <IonButton onClick={logOut}> Log Out </IonButton>
       </IonContent>
     </IonPage>
   );

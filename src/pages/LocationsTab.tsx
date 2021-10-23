@@ -17,6 +17,7 @@ import {
   IonCardTitle,
   IonCardContent,
   IonCardSubtitle,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import React, { useState, useEffect, useContext } from "react";
 import "./LocationsTab.css";
@@ -36,6 +37,15 @@ const Tab2: React.FC = () => {
   const [entities, setEntities] = useState(new Array());
 
   const locationsDB = firebase.firestore().collection("locations");
+
+  useIonViewWillEnter(() => {
+    let tabs = document.getElementById("tabBar");
+    tabs!.style.display = "flex";
+
+    if (userContext.id == "") {
+      history.replace("/");
+    }
+  });
 
   useEffect(() => {
     const unsub = locationsDB
@@ -72,12 +82,16 @@ const Tab2: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonContent>
-          <IonCard>
-            <IonCardHeader>
-              <IonCardTitle> Location </IonCardTitle>
-              <IonCardSubtitle> Time </IonCardSubtitle>
-            </IonCardHeader>
-          </IonCard>
+          <IonButton
+            onClick={(e) => {
+              e.preventDefault();
+              history.push({
+                pathname: "/addrecord",
+              });
+            }}
+          >
+            Add record
+          </IonButton>
           {/* Map through devices */}
           {entities.map((data: any, index: number) => (
             <IonCard
@@ -98,16 +112,6 @@ const Tab2: React.FC = () => {
             </IonCard>
           ))}
         </IonContent>
-        <IonButton
-          onClick={(e) => {
-            e.preventDefault();
-            history.push({
-              pathname: "/addrecord",
-            });
-          }}
-        >
-          Add record
-        </IonButton>
       </IonContent>
     </IonPage>
   );

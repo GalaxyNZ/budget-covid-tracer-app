@@ -35,15 +35,6 @@ const Tab2: React.FC = () => {
 
   const thing: string = "" + history.location.state;
 
-  /*useEffect(() => {
-    console.log(history.location.state);
-    var newEntities = new Array();
-    const unsub = locationsDB
-      .doc(thing)
-      .get()
-      .then((doc) => newEntities.push(doc.data));
-  }, []);*/
-
   useEffect(() => {
     const unsub = locationsDB.where("__name__", "==", thing).onSnapshot(
       (querySnapshot) => {
