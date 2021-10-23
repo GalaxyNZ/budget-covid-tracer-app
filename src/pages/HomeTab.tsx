@@ -9,6 +9,10 @@ import {
   IonFab,
   IonFabButton,
   useIonViewWillEnter,
+  IonItem,
+  IonList,
+  IonCard,
+  IonCardHeader,
 } from "@ionic/react";
 import React, { useState, useEffect, useContext } from "react";
 import { addCircleSharp, add } from "ionicons/icons";
@@ -49,19 +53,11 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Home</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <button
-          onClick={() => console.log("blah")}
-          style={{
-            backgroundColor: "#9900ff",
-            borderRadius: 300,
-            height: 300,
-            width: 300,
-          }}
-        >
-          <IonIcon icon={add} size="300" />
-        </button>
-        <IonButton onClick={logOut}> Log Out </IonButton>
+        <IonList>
+          <IonCard>
+            <IonCardHeader>Blah</IonCardHeader>
+          </IonCard>
+        </IonList>
       </IonContent>
     </IonPage>
   );

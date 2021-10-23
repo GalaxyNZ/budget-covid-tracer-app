@@ -89,6 +89,7 @@ const Tab2: React.FC = () => {
                 pathname: "/addrecord",
               });
             }}
+            style={{ width: "100%" }}
           >
             Add record
           </IonButton>
@@ -106,8 +107,12 @@ const Tab2: React.FC = () => {
             >
               <IonCardHeader>
                 <IonCardTitle> {data.placename} </IonCardTitle>
-                <IonCardSubtitle> {data.time} </IonCardSubtitle>
-                <IonCardSubtitle> {data.id} </IonCardSubtitle>
+                <IonCardSubtitle>
+                  {new Date(data.time).toDateString()}
+                </IonCardSubtitle>
+                <IonCardSubtitle>
+                  {new Date(data.time).toTimeString()}
+                </IonCardSubtitle>
               </IonCardHeader>
             </IonCard>
           ))}

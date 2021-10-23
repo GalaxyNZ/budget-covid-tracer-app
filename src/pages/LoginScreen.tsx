@@ -8,6 +8,8 @@ import {
   IonToolbar,
   IonTitle,
   useIonViewWillEnter,
+  IonList,
+  IonItem,
 } from "@ionic/react";
 import "./RegistrationScreen.css";
 import firebase from "../firebase";
@@ -68,18 +70,28 @@ export default function RegistrationScreen() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonInput
-          placeholder="E-mail"
-          onIonChange={(text: any) => setEmail(text.target.value)}
-        />
-        <IonInput
-          type="password"
-          onIonChange={(text: any) => setPassword(text.target.value)}
-          placeholder="Password"
-        />
-        <IonButton onClick={onLoginPress}>Login</IonButton>
-        Don't have an account?{" "}
-        <IonButton href="/registration">Create an account</IonButton>
+        <IonList>
+          <IonItem>
+            <IonInput
+              placeholder="E-mail"
+              onIonChange={(text: any) => setEmail(text.target.value)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="password"
+              onIonChange={(text: any) => setPassword(text.target.value)}
+              placeholder="Password"
+            />
+          </IonItem>
+          <IonItem>
+            <IonButton onClick={onLoginPress}>Login</IonButton>
+          </IonItem>
+          <IonItem>
+            Don't have an account?{" "}
+            <IonButton href="/registration">Create an account</IonButton>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );

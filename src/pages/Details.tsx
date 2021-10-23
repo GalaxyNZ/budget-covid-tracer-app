@@ -59,6 +59,11 @@ const Tab2: React.FC = () => {
     };
   }, []);
 
+  useIonViewWillEnter(() => {
+    let tabs = document.getElementById("tabBar");
+    tabs!.style.display = "none";
+  });
+
   if (entities.length == 0) {
     return <IonLabel>Loading...</IonLabel>;
   } else {
@@ -66,7 +71,7 @@ const Tab2: React.FC = () => {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Locations</IonTitle>
+            <IonTitle> Location Details </IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
@@ -95,8 +100,8 @@ const Tab2: React.FC = () => {
               <IonLabel>{entities[0].longitude} </IonLabel>
             </IonItem>
 
-            <IonItem>
-              <div id="mapid">
+            <IonItem style={{ height: "40vh" }}>
+              <div id="mapid" style={{ height: "40vh" }}>
                 <MapContainer
                   dragging={true}
                   zoom={15}

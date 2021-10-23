@@ -58,6 +58,11 @@ const Tab2: React.FC = () => {
     };
   }, []);
 
+  useIonViewWillEnter(() => {
+    let tabs = document.getElementById("tabBar");
+    tabs!.style.display = "flex";
+  });
+
   if (entities.length == 0) {
     return <IonLabel>Loading...</IonLabel>;
   } else {
@@ -65,7 +70,7 @@ const Tab2: React.FC = () => {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Locations</IonTitle>
+            <IonTitle>Location History</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
@@ -74,32 +79,32 @@ const Tab2: React.FC = () => {
               <IonTitle size="large">Tab 2</IonTitle>
             </IonToolbar>
           </IonHeader>
-              <div id="mapid">
-                <MapContainer
-                  dragging={true}
-                  zoom={15}
-                  scrollWheelZoom={true}
-                  style={{ height: "100%" }}
-                  center={[entities[0].latitude, entities[0].longitude]}
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  {entities.map((data: any, index: number) => (
-                    <Marker
-                      position={[data.latitude, data.longitude]}
-                      icon={
-                        new Icon({
-                          iconUrl: markerIconPng,
-                          iconSize: [18, 30],
-                          iconAnchor: [9, 30],
-                        })
-                      }
-                    ></Marker>
-                  ))}
-                </MapContainer>
-              </div>
+          <div id="mapid">
+            <MapContainer
+              dragging={true}
+              zoom={15}
+              scrollWheelZoom={true}
+              style={{ height: "100%" }}
+              center={[entities[0].latitude, entities[0].longitude]}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {entities.map((data: any, index: number) => (
+                <Marker
+                  position={[data.latitude, data.longitude]}
+                  icon={
+                    new Icon({
+                      iconUrl: markerIconPng,
+                      iconSize: [18, 30],
+                      iconAnchor: [9, 30],
+                    })
+                  }
+                ></Marker>
+              ))}
+            </MapContainer>
+          </div>
         </IonContent>
       </IonPage>
     );

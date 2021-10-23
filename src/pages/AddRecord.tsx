@@ -12,7 +12,7 @@ import {
   IonButton,
   useIonViewWillEnter,
 } from "@ionic/react";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./LocationsTab.css";
 import { Geolocation, Position } from "@capacitor/geolocation";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
@@ -136,8 +136,8 @@ const Tab2: React.FC = () => {
             <IonLabel>{latitude}</IonLabel>
           </IonItem>
 
-          <IonItem>
-            <div id="mapid">
+          <IonItem style={{ height: "40vh" }}>
+            <div id="mapid" style={{ height: "40vh" }}>
               <MapContainer
                 dragging={true}
                 zoom={15}
@@ -164,8 +164,11 @@ const Tab2: React.FC = () => {
           </IonItem>
 
           <IonItem>
-            <IonButton onClick={onAddButtonPress}>Add record</IonButton>
+            <IonButton onClick={onAddButtonPress} style={{ width: "50%" }}>
+              Add record
+            </IonButton>
             <IonButton
+              style={{ width: "50%" }}
               onClick={(e) => {
                 e.preventDefault();
                 history.goBack();

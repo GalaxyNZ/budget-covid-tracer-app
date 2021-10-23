@@ -8,6 +8,8 @@ import {
   IonToolbar,
   IonTitle,
   useIonViewWillEnter,
+  IonItem,
+  IonList,
 } from "@ionic/react";
 import "./RegistrationScreen.css";
 import LoginScreen from "./LoginScreen";
@@ -73,27 +75,41 @@ export default function RegistrationScreen() {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonInput
-          autofocus
-          placeholder="Full Name"
-          onIonChange={(text: any) => setFullName(text.target.value)}
-        />
-        <IonInput
-          placeholder="E-mail"
-          onIonChange={(text: any) => setEmail(text.target.value)}
-        />
-        <IonInput
-          type="password"
-          onIonChange={(text: any) => setPassword(text.target.value)}
-          placeholder="Password"
-        />
-        <IonInput
-          type="password"
-          placeholder="Confirm Password"
-          onIonChange={(text: any) => setConfirmPassword(text.target.value)}
-        />
-        <IonButton onClick={onRegisterPress}>Create account</IonButton>
-        Already got an account? <IonButton href="/login">Log in</IonButton>
+        <IonList>
+          <IonItem>
+            <IonInput
+              autofocus
+              placeholder="Full Name"
+              onIonChange={(text: any) => setFullName(text.target.value)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              placeholder="E-mail"
+              onIonChange={(text: any) => setEmail(text.target.value)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="password"
+              onIonChange={(text: any) => setPassword(text.target.value)}
+              placeholder="Password"
+            />
+          </IonItem>
+          <IonItem>
+            <IonInput
+              type="password"
+              placeholder="Confirm Password"
+              onIonChange={(text: any) => setConfirmPassword(text.target.value)}
+            />
+          </IonItem>
+          <IonItem>
+            <IonButton onClick={onRegisterPress}>Create account</IonButton>
+          </IonItem>
+          <IonItem>
+            Already got an account? <IonButton href="/login">Log in</IonButton>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
