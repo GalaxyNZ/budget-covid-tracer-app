@@ -90,11 +90,16 @@ export default function RegistrationScreen() {
             />
           </IonItem>
           <IonItem>
-            <IonButton onClick={onLoginPress}>Login</IonButton>
+            <IonButton
+              onClick={onLoginPress}
+              style={{ width: "100%", height: 40, fontSize: 16 }}
+            >
+              Login
+            </IonButton>
           </IonItem>
           <IonItem>
             Don't have an account?{" "}
-            <IonButton href="/registration">Create an account</IonButton>
+            <IonItem href="/registration">Create an account</IonItem>
           </IonItem>
         </IonList>
       </IonContent>

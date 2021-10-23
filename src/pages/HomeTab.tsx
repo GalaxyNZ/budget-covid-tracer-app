@@ -28,6 +28,7 @@ import {
   personOutline,
   mailOutline,
   logOutOutline,
+  analyticsOutline,
 } from "ionicons/icons";
 import ExploreContainer from "../components/ExploreContainer";
 import "./HomeTab.css";
@@ -83,15 +84,15 @@ const Tab1: React.FC = () => {
           </IonCardHeader>
           <IonItem className="ion-activated">
             <IonIcon icon={cloud} slot="start" />
-            <IonLabel>All data is saved in the cloud</IonLabel>
+            <IonItem>All data is saved in the cloud</IonItem>
           </IonItem>
           <IonItem className="ion-activated">
             <IonIcon icon={list} slot="start" />
-            <IonLabel>Data is laid out chronoligically</IonLabel>
+            <IonItem>Data is laid out chronoligically</IonItem>
           </IonItem>
           <IonItem className="ion-activated">
-            <IonIcon icon={list} slot="start" />
-            <IonLabel>Data is laid out chronoligically</IonLabel>
+            <IonIcon icon={analyticsOutline} slot="start" />
+            <IonItem>Only user added data is collected</IonItem>
           </IonItem>
         </IonCard>
         <IonCard>
