@@ -13,9 +13,22 @@ import {
   IonList,
   IonCard,
   IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonLabel,
 } from "@ionic/react";
 import React, { useState, useEffect, useContext } from "react";
-import { addCircleSharp, add } from "ionicons/icons";
+import {
+  addCircleSharp,
+  add,
+  wifi,
+  cloud,
+  list,
+  personOutline,
+  mailOutline,
+  logOutOutline,
+} from "ionicons/icons";
 import ExploreContainer from "../components/ExploreContainer";
 import "./HomeTab.css";
 import UserContext from "../userContext";
@@ -53,11 +66,51 @@ const Tab1: React.FC = () => {
             <IonTitle size="large">Home</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonList>
-          <IonCard>
-            <IonCardHeader>Blah</IonCardHeader>
-          </IonCard>
-        </IonList>
+        <IonCard>
+          <img src="https://www.artnews.com/wp-content/uploads/2021/03/AdobeStock_263911828.jpeg" />
+          <IonCardHeader>
+            <IonCardTitle>Location Tracker</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            All your location data is added yourself, not automatically. Your
+            data is a tap away with our helpful map that shows you everywhere
+            you have logged, and a list for more detailed viewing
+          </IonCardContent>
+        </IonCard>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Added Features</IonCardTitle>
+          </IonCardHeader>
+          <IonItem className="ion-activated">
+            <IonIcon icon={cloud} slot="start" />
+            <IonLabel>All data is saved in the cloud</IonLabel>
+          </IonItem>
+          <IonItem className="ion-activated">
+            <IonIcon icon={list} slot="start" />
+            <IonLabel>Data is laid out chronoligically</IonLabel>
+          </IonItem>
+          <IonItem className="ion-activated">
+            <IonIcon icon={list} slot="start" />
+            <IonLabel>Data is laid out chronoligically</IonLabel>
+          </IonItem>
+        </IonCard>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Account Management</IonCardTitle>
+          </IonCardHeader>
+          <IonItem className="ion-activated">
+            <IonIcon icon={personOutline} slot="start" />
+            <IonLabel> {userContext.name} </IonLabel>
+          </IonItem>
+          <IonItem className="ion-activated">
+            <IonIcon icon={mailOutline} slot="start" />
+            <IonLabel> {userContext.email} </IonLabel>
+          </IonItem>
+          <IonItem href="/" className="ion-activated">
+            <IonIcon icon={logOutOutline} slot="start" />
+            <IonLabel>Log Out</IonLabel>
+          </IonItem>
+        </IonCard>
       </IonContent>
     </IonPage>
   );

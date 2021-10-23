@@ -20,6 +20,8 @@ export default function RegistrationScreen() {
   let history = useHistory();
   const userContext = useContext(UserContext);
 
+  const [entities, setEntities] = useState(new Array());
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,6 +43,9 @@ export default function RegistrationScreen() {
             const user = firestoreDocument.data();
             userContext.id = uid;
             userContext.email = email;
+            if (user) {
+              userContext.name = user.fullName;
+            }
             history.push({
               pathname: "/home",
             });
