@@ -16,7 +16,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import firebase from "../firebase";
-import "./BluetoothTab.css";
+import "./HistoryTab.css";
 
 const Tab3: React.FC = () => {
   return (

@@ -9,10 +9,19 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, triangle, ellipseOutline } from "ionicons/icons";
+import {
+  ellipse,
+  square,
+  triangle,
+  ellipseOutline,
+  map,
+  locateOutline,
+  mapOutline,
+  homeOutline,
+} from "ionicons/icons";
 import Home from "./pages/HomeTab";
 import Locations from "./pages/LocationsTab";
-import Bluetooth from "./pages/BluetoothTab";
+import History from "./pages/HistoryTab";
 import Registration from "./pages/RegistrationScreen";
 import Login from "./pages/LoginScreen";
 import AddRecord from "./pages/AddRecord";
@@ -60,8 +69,8 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <Home />
           </Route>
-          <Route path="/bluetooth">
-            <Bluetooth />
+          <Route path="/history">
+            <History />
           </Route>
           <Route exact path="/">
             <Redirect to="/login" />
@@ -69,16 +78,16 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom" id="tabBar">
           <IonTabButton tab="locations" href="/locations">
-            <IonIcon icon={triangle} />
+            <IonIcon icon={locateOutline} />
             <IonLabel>Locations</IonLabel>
           </IonTabButton>
           <IonTabButton tab="home" href="/home">
-            <IonIcon icon={ellipseOutline} />
+            <IonIcon icon={homeOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="bluetooth" href="/bluetooth">
-            <IonIcon icon={square} />
-            <IonLabel>Bluetooth</IonLabel>
+          <IonTabButton tab="history" href="/history">
+            <IonIcon icon={mapOutline} />
+            <IonLabel>History</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
